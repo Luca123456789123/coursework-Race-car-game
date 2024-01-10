@@ -64,7 +64,7 @@ while run:
 
     screen.fill((202, 228, 241))
     if start_button.draw() == True:
-        print('start')
+        run.run
     if exit_button.draw() == True:
         run = False
     if car_button.draw() == True:
