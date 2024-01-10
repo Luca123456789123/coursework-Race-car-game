@@ -55,7 +55,9 @@ exit_button = Button (864, 300, exit_img, 1.0)
 car_button = Button(400, 500, car_custom_img, 1.0) 
 
 
-
+def subprocess():
+subprocess.run('racing-game.py')
+run = True 
 
 run = True
 while run:
