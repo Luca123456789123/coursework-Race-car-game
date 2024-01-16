@@ -6,5 +6,5 @@ def scale_image(img, factor):
 
 def blit_rotate_center(window, image, top_left, angle):
     rotated_image = pygame.transform.rotate(iage, angle)
-    new_rect = rotated inage.get_rect(center image.get_rect(topleft = top_left).center)
+    new_rect = rotated image.get_rect(center image.get_rect(topleft = top_left).center)
     window.blit(rotated image, new_rect.topleft)
