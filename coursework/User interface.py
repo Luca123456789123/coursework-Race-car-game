@@ -1,5 +1,5 @@
 import pygame
-
+import racingGame
 
 
 SCREEN_WIDTH = 1220
@@ -11,9 +11,9 @@ pygame.display.set_caption('button')
 
 #load button image
 
-start_img = pygame.image.load('start_btn.png').convert_alpha()
-exit_img = pygame.image.load('exit_btn.png').convert_alpha()
-car_custom_img = pygame.image.load('purple-car.png').convert_alpha()
+start_img = pygame.image.load('./imgs/start_button.png').convert_alpha()
+exit_img = pygame.image.load('./imgs/exit_button.png').convert_alpha()
+car_custom_img = pygame.image.load('./imgs/purple-car.png').convert_alpha()
 
 #button class
 class Button():
@@ -54,11 +54,6 @@ start_button = Button(864, 200, start_img, 1.0)
 exit_button = Button (864, 300, exit_img, 1.0)
 car_button = Button(400, 500, car_custom_img, 1.0) 
 
-
-
-def subrocess():
-    subprocess.run('racing-game')
-    run = True 
 run = True
 while run:
 
@@ -84,4 +79,3 @@ while run:
     pygame.display.update()
 
 pygame.quit()
-
