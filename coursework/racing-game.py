@@ -60,8 +60,10 @@ class Trackboarder:
 
 
 class PlayerCar(AbstractCar):
-    def __init__(self):
-        super().__init__(self)
+    def __init__(self, max_vel, rotation_vel, START_POS, image):
+        self.IMG = image
+        START_POS = (180, 200)
+        super().__init__(max_vel, rotation_vel, START_POS)
         
     IMG = RED_CAR
     START_POS = (180, 200)
