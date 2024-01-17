@@ -19,7 +19,7 @@ FPS = 60
 
 
 class AbstractCar:
-    def __init__(self, max_vel, rotation_vel):
+    def __init__(self, max_vel, rotation_vel, START_POS):
         self.img = None
         self.max_vel = max_vel
         self.vel = 0
@@ -27,6 +27,10 @@ class AbstractCar:
         self.angle = 0
         self.x, self.y = self.START_POS
         self.acceleration = 0.1
+
+    def draw(self, win):
+        blit_rotate_center(win, self.img, (self.x, self.y), self.angle)
+        win.blit(playercar, (self.x, self.y))
 
 class Trackboarder:
     def __init__(self, collision,):
@@ -60,13 +64,10 @@ class Trackboarder:
 
 
 class PlayerCar(AbstractCar):
-    def __init__(self, max_vel, rotation_vel, START_POS, image):
-        self.IMG = image
+    def __init__(self, max_vel, rotation_vel, image):
+        self.img = image
         START_POS = (180, 200)
         super().__init__(max_vel, rotation_vel, START_POS)
-        
-    IMG = RED_CAR
-    START_POS = (180, 200)
 
 
 def draw(win, images, player_car):
@@ -77,14 +78,10 @@ def draw(win, images, player_car):
     pygame.display.update()
 
 
-run = True
-clock = pygame.time.Clock()
-images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
-player_car = PlayerCar(4, 4)
-
 
 def run():
-   
+    run = True
+    clock = pygame.time.Clock()
     GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
     TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
     
@@ -92,7 +89,8 @@ def run():
     
     RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
     GREEN_CAR = scale_image(pygame.image.load("imgs/green-car.png"), 0.55)
-    
+    images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
+    player_car = PlayerCar(4, 4, RED_CAR)
     WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Racing Game!")
