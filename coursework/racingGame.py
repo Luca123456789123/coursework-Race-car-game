@@ -18,6 +18,142 @@ pygame.display.set_caption("Racing Game!")
 FPS = 60
 
 
+
+class ObstacleGenerator:
+    def __init__(self):
+        self.levels = [1,2,3,4,5,6,7,8,9,10]
+
+    def generate_level_1(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)]
+        ]
+
+    def generate_level_2(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)]
+        ]
+
+    def generate_level_3(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)]
+        ]
+
+    def generate_level_4(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)]
+        ]
+
+    def generate_level_5(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)]
+        ]
+
+    def generate_level_6(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)]
+        ]
+
+    def generate_level_7(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)]
+        ]
+
+    def generate_level_8(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)]
+        ]
+
+    def generate_level_9(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)],
+            [(610, 610), (640, 610), (640, 640), (610, 640)]
+        ]
+
+    def generate_level_10(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)],
+            [(610, 610), (640, 610), (640, 640), (610, 640)],
+            [(680, 680), (710, 680), (710, 710), (680, 710)]
+        ]    
+
+    def generate_obstacles(self, level):
+        if level == 1:
+            return self.generate_level_1()
+        elif level == 2:
+            return self.generate_level_2()
+        elif level == 3:
+            return self.generate_level_3()
+        elif level == 4:
+            return self.generate_level_4()
+        elif level == 5:
+            return self.generate_level_5()
+        elif level == 6:
+            return self.generate_level_6()
+        elif level == 7:
+            return self.generate_level_7()
+        elif level == 8:
+            return self.generate_level_8()
+        elif level == 9:
+            return self.generate_level_9()
+        elif level == 10:
+            return self.generate_level_10()
+        else:
+            raise ValueError("Level must be between 1 and 10.")
+
+class FinishBox:
+    def __init__(self, position, size):
+        self.position = position
+        self.size = size
+        self.rect = pygame.Rect(position, size)
+
+    def draw(self, win):
+        pygame.draw.rect(win, (0, 0, 255), self.rect)
+
+    def check_collision(self, car_rect):
+        return self.rect.colliderect(car_rect)
+     
 class AbstractCar:
     def __init__(self, max_vel, rotation_vel, START_POS, img):
         self.img = img
@@ -141,12 +277,13 @@ class PlayerCar(AbstractCar):
         return self.rect.colliderect(track_border.rect)
 
     
-def draw(win, images, player_car, track_border):
+def draw(win, images, player_car, track_border, finish_box):
     for img, pos in images:
         win.blit(img, pos)
 
     player_car.draw(win)
     track_border.draw(win)
+    finish_box.draw(win) 
     pygame.display.update()
 
 
@@ -155,7 +292,7 @@ def run():
     run = True
     clock = pygame.time.Clock()
     GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
-
+    LEVEL = 1
     # On level 1 - one obstacle is created, on level 2 - two obstacles are created etc. 
     # The obstacles are defined by a list of points.
     # The obstacles are randomly placed on the track.
@@ -163,24 +300,13 @@ def run():
     
     # Create a finish button to increase the level and restart the game. 
     # Define the points for the border
-    
-    OBSTACLE1_POINTS = [
-        (50, 50),
-        (80, 50),
-        (80, 80),
-        (50, 80)
-    ]
-    
-    OBSTACLE2_POINTS = [
-        (120, 120),
-        (150, 120),
-        (150, 150),
-        (120, 150)
-    ]
-    
-    OBSTACLES = [OBSTACLE1_POINTS, OBSTACLE2_POINTS]
 
-    track_border = Obstacles(OBSTACLES)
+    obstacle_generator = ObstacleGenerator()
+    obstacles = obstacle_generator.generate_obstacles(LEVEL)
+    print(obstacles)
+
+
+    track_border = Obstacles(obstacles)
 
     RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
     images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
@@ -189,11 +315,14 @@ def run():
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Racing Game!")
     
+    FINISH_BOX_SIZE = (40, 40)
+    finish_box = FinishBox((300, 300), FINISH_BOX_SIZE)
+
     FPS = 60
     while run:
         clock.tick(FPS)
 
-        draw(WIN, images, player_car, track_border)  # Pass the track_border object to the draw function
+        draw(WIN, images, player_car, track_border, finish_box) 
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -213,6 +342,15 @@ def run():
         if keys[pygame.K_s]: 
             moved = True
             player_car.move_backward(track_border)
+
+        if finish_box.check_collision(player_car.rect):
+            LEVEL += 1
+            print(f"Level Up! Now on Level {LEVEL}")
+            obstacles = obstacle_generator.generate_obstacles(LEVEL)
+            track_border = Obstacles(obstacles)
+            player_car.x, player_car.y = player_car.START_POS
+            player_car.vel = 0
+            player_car.angle = 0
             
         if not moved:
             player_car.reduce_speed(track_border)
