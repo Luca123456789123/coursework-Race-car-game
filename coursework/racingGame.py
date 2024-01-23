@@ -21,21 +21,126 @@ FPS = 60
 
 class ObstacleGenerator:
     def __init__(self):
-        self.levels = {
-            1: [(50, 50), (80, 50), (80, 80), (50, 80)],
-            2: [(120, 120), (150, 120), (150, 150), (120, 150)],
-            3: [(200, 200), (230, 200), (230, 230), (200, 230)],
-            4: [(280, 280), (310, 280), (310, 310), (280, 310)],
-            5: [(350, 350), (380, 350), (380, 380), (350, 380)],
-            6: [(420, 420), (450, 420), (450, 450), (420, 450)],
-            7: [(500, 500), (530, 500), (530, 530), (500, 530)],
-            8: [(570, 570), (600, 570), (600, 600), (570, 600)],
-            9: [(640, 640), (670, 640), (670, 670), (640, 670)],
-            10: [(700, 700), (730, 700), (730, 730), (700, 730)],
-        }
+        self.levels = [1,2,3,4,5,6,7,8,9,10]
+
+    def generate_level_1(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)]
+        ]
+
+    def generate_level_2(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)]
+        ]
+
+    def generate_level_3(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)]
+        ]
+
+    def generate_level_4(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)]
+        ]
+
+    def generate_level_5(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)]
+        ]
+
+    def generate_level_6(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)]
+        ]
+
+    def generate_level_7(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)]
+        ]
+
+    def generate_level_8(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)]
+        ]
+
+    def generate_level_9(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)],
+            [(610, 610), (640, 610), (640, 640), (610, 640)]
+        ]
+
+    def generate_level_10(self):
+        return [
+            [(50, 50), (80, 50), (80, 80), (50, 80)],
+            [(120, 120), (150, 120), (150, 150), (120, 150)],
+            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(260, 260), (290, 260), (290, 290), (260, 290)],
+            [(330, 330), (360, 330), (360, 360), (330, 360)],
+            [(400, 400), (430, 400), (430, 430), (400, 430)],
+            [(470, 470), (500, 470), (500, 500), (470, 500)],
+            [(540, 540), (570, 540), (570, 570), (540, 570)],
+            [(610, 610), (640, 610), (640, 640), (610, 640)],
+            [(680, 680), (710, 680), (710, 710), (680, 710)]
+        ]    
 
     def generate_obstacles(self, level):
-        return self.levels.get(level, [])    
+        if level == 1:
+            return self.generate_level_1()
+        elif level == 2:
+            return self.generate_level_2()
+        elif level == 3:
+            return self.generate_level_3()
+        elif level == 4:
+            return self.generate_level_4()
+        elif level == 5:
+            return self.generate_level_5()
+        elif level == 6:
+            return self.generate_level_6()
+        elif level == 7:
+            return self.generate_level_7()
+        elif level == 8:
+            return self.generate_level_8()
+        elif level == 9:
+            return self.generate_level_9()
+        elif level == 10:
+            return self.generate_level_10()
+        else:
+            raise ValueError("Level must be between 1 and 10.")
 
 class FinishBox:
     def __init__(self, position, size):
@@ -188,10 +293,6 @@ def run():
     clock = pygame.time.Clock()
     GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
     LEVEL = 1
-
-    obstacle_generator = ObstacleGenerator()
-    obstacles = obstacle_generator.generate_obstacles(LEVEL)
-    track_border = Obstacles(obstacles)
     # On level 1 - one obstacle is created, on level 2 - two obstacles are created etc. 
     # The obstacles are defined by a list of points.
     # The obstacles are randomly placed on the track.
@@ -199,6 +300,13 @@ def run():
     
     # Create a finish button to increase the level and restart the game. 
     # Define the points for the border
+
+    obstacle_generator = ObstacleGenerator()
+    obstacles = obstacle_generator.generate_obstacles(LEVEL)
+    print(obstacles)
+
+
+    track_border = Obstacles(obstacles)
 
     RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
     images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
@@ -213,10 +321,6 @@ def run():
     FPS = 60
     while run:
         clock.tick(FPS)
-
-        print(f"Level {LEVEL} - Obstacles:")
-        for obstacle in obstacles:
-            print(obstacle)
 
         draw(WIN, images, player_car, track_border, finish_box) 
 
