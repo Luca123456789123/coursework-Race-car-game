@@ -18,6 +18,37 @@ pygame.display.set_caption("Racing Game!")
 FPS = 60
 
 
+
+class ObstacleGenerator:
+    def __init__(self):
+        self.levels = {
+            1: [(50, 50), (80, 50), (80, 80), (50, 80)],
+            2: [(120, 120), (150, 120), (150, 150), (120, 150)],
+            3: [(200, 200), (230, 200), (230, 230), (200, 230)],
+            4: [(280, 280), (310, 280), (310, 310), (280, 310)],
+            5: [(350, 350), (380, 350), (380, 380), (350, 380)],
+            6: [(420, 420), (450, 420), (450, 450), (420, 450)],
+            7: [(500, 500), (530, 500), (530, 530), (500, 530)],
+            8: [(570, 570), (600, 570), (600, 600), (570, 600)],
+            9: [(640, 640), (670, 640), (670, 670), (640, 670)],
+            10: [(700, 700), (730, 700), (730, 730), (700, 730)],
+        }
+
+    def generate_obstacles(self, level):
+        return self.levels.get(level, [])    
+
+class FinishBox:
+    def __init__(self, position, size):
+        self.position = position
+        self.size = size
+        self.rect = pygame.Rect(position, size)
+
+    def draw(self, win):
+        pygame.draw.rect(win, (0, 0, 255), self.rect)
+
+    def check_collision(self, car_rect):
+        return self.rect.colliderect(car_rect)
+     
 class AbstractCar:
     def __init__(self, max_vel, rotation_vel, START_POS, img):
         self.img = img
@@ -141,12 +172,13 @@ class PlayerCar(AbstractCar):
         return self.rect.colliderect(track_border.rect)
 
     
-def draw(win, images, player_car, track_border):
+def draw(win, images, player_car, track_border, finish_box):
     for img, pos in images:
         win.blit(img, pos)
 
     player_car.draw(win)
     track_border.draw(win)
+    finish_box.draw(win) 
     pygame.display.update()
 
 
@@ -155,7 +187,11 @@ def run():
     run = True
     clock = pygame.time.Clock()
     GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
+    LEVEL = 1
 
+    obstacle_generator = ObstacleGenerator()
+    obstacles = obstacle_generator.generate_obstacles(LEVEL)
+    track_border = Obstacles(obstacles)
     # On level 1 - one obstacle is created, on level 2 - two obstacles are created etc. 
     # The obstacles are defined by a list of points.
     # The obstacles are randomly placed on the track.
@@ -163,24 +199,6 @@ def run():
     
     # Create a finish button to increase the level and restart the game. 
     # Define the points for the border
-    
-    OBSTACLE1_POINTS = [
-        (50, 50),
-        (80, 50),
-        (80, 80),
-        (50, 80)
-    ]
-    
-    OBSTACLE2_POINTS = [
-        (120, 120),
-        (150, 120),
-        (150, 150),
-        (120, 150)
-    ]
-    
-    OBSTACLES = [OBSTACLE1_POINTS, OBSTACLE2_POINTS]
-
-    track_border = Obstacles(OBSTACLES)
 
     RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
     images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
@@ -189,11 +207,18 @@ def run():
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Racing Game!")
     
+    FINISH_BOX_SIZE = (40, 40)
+    finish_box = FinishBox((300, 300), FINISH_BOX_SIZE)
+
     FPS = 60
     while run:
         clock.tick(FPS)
 
-        draw(WIN, images, player_car, track_border)  # Pass the track_border object to the draw function
+        print(f"Level {LEVEL} - Obstacles:")
+        for obstacle in obstacles:
+            print(obstacle)
+
+        draw(WIN, images, player_car, track_border, finish_box) 
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -213,6 +238,15 @@ def run():
         if keys[pygame.K_s]: 
             moved = True
             player_car.move_backward(track_border)
+
+        if finish_box.check_collision(player_car.rect):
+            LEVEL += 1
+            print(f"Level Up! Now on Level {LEVEL}")
+            obstacles = obstacle_generator.generate_obstacles(LEVEL)
+            track_border = Obstacles(obstacles)
+            player_car.x, player_car.y = player_car.START_POS
+            player_car.vel = 0
+            player_car.angle = 0
             
         if not moved:
             player_car.reduce_speed(track_border)
