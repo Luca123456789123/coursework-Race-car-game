@@ -3,7 +3,7 @@ import time
 import math
 from functions import scale_image, blit_rotate_center
 
-GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
+GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 2.5)
 # TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
 
 TRACK_BORDER = scale_image(pygame.image.load("imgs/track-border.png"), 0.9)
@@ -39,14 +39,14 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)]
+            [(20, 20), (23, 20), (23, 23), (20, 23)]
         ]
 
     def generate_level_4(self):
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)]
         ]
 
@@ -54,7 +54,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)]
         ]
@@ -63,7 +63,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)],
             [(400, 400), (430, 400), (430, 430), (400, 430)]
@@ -73,7 +73,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)],
             [(400, 400), (430, 400), (430, 430), (400, 430)],
@@ -84,7 +84,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)],
             [(400, 400), (430, 400), (430, 430), (400, 430)],
@@ -96,7 +96,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)],
             [(400, 400), (430, 400), (430, 430), (400, 430)],
@@ -109,7 +109,7 @@ class ObstacleGenerator:
         return [
             [(50, 50), (80, 50), (80, 80), (50, 80)],
             [(120, 120), (150, 120), (150, 150), (120, 150)],
-            [(200, 200), (230, 200), (230, 200), (200, 230)],
+            [(20, 20), (23, 20), (23, 23), (20, 23)],
             [(260, 260), (290, 260), (290, 290), (260, 290)],
             [(330, 330), (360, 330), (360, 360), (330, 360)],
             [(400, 400), (430, 400), (430, 430), (400, 430)],
@@ -292,19 +292,11 @@ def draw(win, images, player_car, track_border, finish_box):
 def run():
     run = True
     clock = pygame.time.Clock()
-    GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
+    GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 2.5)
     LEVEL = 1
-    # On level 1 - one obstacle is created, on level 2 - two obstacles are created etc. 
-    # The obstacles are defined by a list of points.
-    # The obstacles are randomly placed on the track.
-    # The obstacles are rotated randomly.
-    
-    # Create a finish button to increase the level and restart the game. 
-    # Define the points for the border
 
     obstacle_generator = ObstacleGenerator()
     obstacles = obstacle_generator.generate_obstacles(LEVEL)
-    print(obstacles)
 
 
     track_border = Obstacles(obstacles)
@@ -345,6 +337,10 @@ def run():
             player_car.move_backward(track_border)
 
         if finish_box.check_collision(player_car.rect):
+            if LEVEL == 10:
+                print("You won!")
+                run = False
+                break
             LEVEL += 1
             print(f"Level Up! Now on Level {LEVEL}")
             obstacles = obstacle_generator.generate_obstacles(LEVEL)
