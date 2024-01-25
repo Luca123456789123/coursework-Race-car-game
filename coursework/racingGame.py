@@ -2,6 +2,8 @@ import pygame
 import time
 import math
 from functions import scale_image, blit_rotate_center
+import random
+
 
 GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 2.5)
 # TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
@@ -141,7 +143,22 @@ class ObstacleGenerator:
         elif level == 10:
             return self.generate_level_10()
         else:
-            raise ValueError("Level must be between 1 and 10.")
+            print("Level must be between 1 and 10.")
+    
+    def generate_finish_box_position(self, level):
+
+        x_range = (50, 750)
+        y_range = (50, 750)
+
+        if level <= 0:
+            print("Level must be greater than 0.")
+
+        # positions = [(50, 50), (80, 50), (80, 80), (50, 80)]
+        positions = [(random.randint(x_range[0], x_range[1]), random.randint(y_range[0], y_range[1])) for _ in range(level)]
+        if level <= len(positions):
+            return positions[level - 1]
+        else:
+            print("No predefined position for the current level.")
 
 class FinishBox:
     def __init__(self, position, size):
@@ -177,7 +194,7 @@ class Obstacles:
 
     def create_obstacle(self, points):
         if len(points) < 3:
-            raise ValueError("At least three points are required to define a polygon.")
+            print("At least three points are required to define a polygon.")
 
         min_x = min(p[0] for p in points)
         min_y = min(p[1] for p in points)
@@ -309,7 +326,8 @@ def run():
     pygame.display.set_caption("Racing Game!")
     
     FINISH_BOX_SIZE = (40, 40)
-    finish_box = FinishBox((300, 300), FINISH_BOX_SIZE)
+    finish_box_position = obstacle_generator.generate_finish_box_position(LEVEL)
+    finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
 
     FPS = 60
     while run:
