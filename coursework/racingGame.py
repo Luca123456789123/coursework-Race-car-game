@@ -5,7 +5,7 @@ from functions import scale_image, blit_rotate_center
 import random
 
 
-GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 2.5)
+GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 0.42)
 # TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
 
 TRACK_BORDER = scale_image(pygame.image.load("imgs/track-border.png"), 0.9)
@@ -309,7 +309,7 @@ def draw(win, images, player_car, track_border, finish_box):
 def run():
     run = True
     clock = pygame.time.Clock()
-    GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 2.5)
+    GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 0.42)
     LEVEL = 1
 
     obstacle_generator = ObstacleGenerator()
@@ -362,6 +362,8 @@ def run():
             LEVEL += 1
             print(f"Level Up! Now on Level {LEVEL}")
             obstacles = obstacle_generator.generate_obstacles(LEVEL)
+            finish_box_position = obstacle_generator.generate_finish_box_position(LEVEL)
+            finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
             track_border = Obstacles(obstacles)
             player_car.x, player_car.y = player_car.START_POS
             player_car.vel = 0
