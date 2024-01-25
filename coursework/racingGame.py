@@ -4,14 +4,15 @@ import math
 from functions import scale_image, blit_rotate_center
 
 GRASS = scale_image(pygame.image.load("imgs/grass.jpg"), 2.5)
-TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
+# TRACK = scale_image(pygame.image.load("imgs/track.png"), 0.9)
 
 TRACK_BORDER = scale_image(pygame.image.load("imgs/track-border.png"), 0.9)
 
 RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
 GREEN_CAR = scale_image(pygame.image.load("imgs/green-car.png"), 0.55)
 
-WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
+# WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
+WIDTH, HEIGHT = GRASS.get_width(), GRASS.get_height()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Racing Game!")
 
@@ -309,9 +310,9 @@ def run():
     track_border = Obstacles(obstacles)
 
     RED_CAR = scale_image(pygame.image.load("imgs/red-car.png"), 0.55)
-    images = [(GRASS, (0, 0)), (TRACK, (0, 0))]
+    images = [(GRASS, (0, 0))]
     player_car = PlayerCar(4, 4, RED_CAR)
-    WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
+    WIDTH, HEIGHT = GRASS.get_width(), GRASS.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Racing Game!")
     
