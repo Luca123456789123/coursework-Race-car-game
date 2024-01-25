@@ -145,7 +145,7 @@ class ObstacleGenerator:
         else:
             print("Level must be between 1 and 10.")
     
-    def generate_finish_box_position(self, level):
+    def generate_position(self, level):
 
         x_range = (50, 750)
         y_range = (50, 750)
@@ -326,7 +326,8 @@ def run():
     pygame.display.set_caption("Racing Game!")
     
     FINISH_BOX_SIZE = (40, 40)
-    finish_box_position = obstacle_generator.generate_finish_box_position(LEVEL)
+    finish_box_position = obstacle_generator.generate_position(LEVEL)
+    player_car.START_POS = obstacle_generator.generate_position(LEVEL)
     finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
 
     FPS = 60
@@ -362,7 +363,7 @@ def run():
             LEVEL += 1
             print(f"Level Up! Now on Level {LEVEL}")
             obstacles = obstacle_generator.generate_obstacles(LEVEL)
-            finish_box_position = obstacle_generator.generate_finish_box_position(LEVEL)
+            finish_box_position = obstacle_generator.generate_position(LEVEL)
             finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
             track_border = Obstacles(obstacles)
             player_car.x, player_car.y = player_car.START_POS
