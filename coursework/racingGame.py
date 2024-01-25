@@ -25,6 +25,8 @@ FPS = 60
 class ObstacleGenerator:
     def __init__(self):
         self.levels = [1,2,3,4,5,6,7,8,9,10]
+        self.x_range = (50, 750)
+        self.y_range = (50, 750)
 
     def generate_level_1(self):
         return [
@@ -145,8 +147,30 @@ class ObstacleGenerator:
         else:
             print("Level must be between 1 and 10.")
     
-    def generate_position(self, level):
+    def generate_random_obstacles(self, level):
+        if level not in self.levels:
+            print("Level must be between 1 and 10.")
 
+        num_obstacles = level
+        obstacles = []
+
+        for _ in range(num_obstacles):
+            x = random.randint(self.x_range[0], self.x_range[1])
+            y = random.randint(self.y_range[0], self.y_range[1])
+            side_length = random.randint(30, 60)  # You can adjust the side length as needed
+
+            obstacle = [
+                (x, y),
+                (x + side_length, y),
+                (x + side_length, y + side_length),
+                (x, y + side_length)
+            ]
+
+            obstacles.append(obstacle)
+
+        return obstacles    
+
+    def generate_position(self, level):
         x_range = (50, 750)
         y_range = (50, 750)
 
@@ -213,6 +237,7 @@ class Obstacles:
 
     def draw(self, win):
         for obstacle in self.obstacles:
+            
             pygame.draw.polygon(win, (255, 0, 0), obstacle["points"])
 
     def check_collision(self, car_rect):
@@ -312,8 +337,10 @@ def run():
     GRASS = scale_image(pygame.image.load("imgs/cartoon-grass.jpg"), 0.42)
     LEVEL = 1
 
+    start_time = time.time()
+
     obstacle_generator = ObstacleGenerator()
-    obstacles = obstacle_generator.generate_obstacles(LEVEL)
+    obstacles = obstacle_generator.generate_random_obstacles(LEVEL)
 
 
     track_border = Obstacles(obstacles)
@@ -327,7 +354,17 @@ def run():
     
     FINISH_BOX_SIZE = (40, 40)
     finish_box_position = obstacle_generator.generate_position(LEVEL)
+
+    # Generate the finish box posiiton until it is not colliding with the track border
+    while track_border.check_collision(pygame.Rect(finish_box_position, FINISH_BOX_SIZE)):
+        finish_box_position = obstacle_generator.generate_position(LEVEL)
+
+
     player_car.START_POS = obstacle_generator.generate_position(LEVEL)
+    # Generate the player car position until it is not colliding with the finish box
+    while pygame.Rect(player_car.START_POS, player_car.rect.size).colliderect(pygame.Rect(finish_box_position, FINISH_BOX_SIZE)):
+        player_car.START_POS = obstacle_generator.generate_position(LEVEL)
+
     finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
 
     FPS = 60
@@ -357,16 +394,28 @@ def run():
 
         if finish_box.check_collision(player_car.rect):
             if LEVEL == 10:
-                print("You won!")
+                end_time = time.time()
+                elapsed_time = round(end_time - start_time, 2)
+                print(f"You won! Time: {elapsed_time} seconds")
                 run = False
                 break
             LEVEL += 1
-            print(f"Level Up! Now on Level {LEVEL}")
-            obstacles = obstacle_generator.generate_obstacles(LEVEL)
+            end_time = time.time()
+            elapsed_time = round(end_time - start_time, 2)
+            print(f"Level Up! Now on Level {LEVEL}. Time: {elapsed_time} seconds")
+            obstacles = obstacle_generator.generate_random_obstacles(LEVEL)
             finish_box_position = obstacle_generator.generate_position(LEVEL)
+            # Generate new finish box position and check for overlap with obstacles
+            while track_border.check_collision(pygame.Rect(finish_box_position, FINISH_BOX_SIZE)):
+                finish_box_position = obstacle_generator.generate_position(LEVEL)
+
             finish_box = FinishBox(finish_box_position, FINISH_BOX_SIZE)
             track_border = Obstacles(obstacles)
+            # Generate new player car starting position and check for overlap with finish box
             player_car.x, player_car.y = player_car.START_POS
+            while pygame.Rect(player_car.START_POS, player_car.rect.size).colliderect(pygame.Rect(finish_box_position, FINISH_BOX_SIZE)):
+                player_car.START_POS = obstacle_generator.generate_position(LEVEL)
+
             player_car.vel = 0
             player_car.angle = 0
             
